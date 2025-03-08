@@ -1,22 +1,23 @@
 package com.example.expensetracker.model;
 
-import org.springframework.data.annotation.Id;  // Import MongoDB-specific @Id annotation
-import org.springframework.data.mongodb.core.mapping.Document;  // Import MongoDB-specific @Document annotation
+import org.springframework.data.annotation.Id; // Import MongoDB-specific @Id annotation
+import org.springframework.data.mongodb.core.mapping.Document; // Import MongoDB-specific @Document annotation
 
 import java.math.BigDecimal;
 
-@Document(collection = "expense")  // Optional: specify collection name if not 'expense'
+@Document(collection = "expense") // Optional: specify collection name if not 'expense'
 public class Expense {
 
     @Id
-    private String id;  // MongoDB uses String by default for the id field
+    private String id;
 
     private String description;
 
     private BigDecimal amount;
 
     // No-argument constructor for MongoDB
-    public Expense() {}
+    public Expense() {
+    }
 
     // Constructor for easier object creation
     public Expense(String description, BigDecimal amount) {
@@ -25,7 +26,7 @@ public class Expense {
     }
 
     // Getters and Setters
-    public String getId() {  // Change id type to String
+    public String getId() { // Change id type to String
         return id;
     }
 
