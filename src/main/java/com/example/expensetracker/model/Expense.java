@@ -1,23 +1,21 @@
 package com.example.expensetracker.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import org.springframework.data.annotation.Id;  // Import MongoDB-specific @Id annotation
+import org.springframework.data.mongodb.core.mapping.Document;  // Import MongoDB-specific @Document annotation
+
 import java.math.BigDecimal;
 
-@Entity  // No @Table annotation, default table name 'expense'
+@Document(collection = "expense")  // Optional: specify collection name if not 'expense'
 public class Expense {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;  // MongoDB uses String by default for the id field
 
-    private String description;  // Default column name 'description'
+    private String description;
 
-    private BigDecimal amount;   // Default column name 'amount'
+    private BigDecimal amount;
 
-    // No-argument constructor for JPA
+    // No-argument constructor for MongoDB
     public Expense() {}
 
     // Constructor for easier object creation
@@ -27,11 +25,11 @@ public class Expense {
     }
 
     // Getters and Setters
-    public Long getId() {
+    public String getId() {  // Change id type to String
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -54,6 +52,6 @@ public class Expense {
     // Override toString for easy debugging
     @Override
     public String toString() {
-        return "Expense{id=" + id + ", description='" + description + "', amount=" + amount + "}";
+        return "Expense{id='" + id + "', description='" + description + "', amount=" + amount + "}";
     }
 }

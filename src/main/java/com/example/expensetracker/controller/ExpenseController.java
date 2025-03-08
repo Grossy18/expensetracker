@@ -42,14 +42,14 @@ public class ExpenseController {
     }
 
     @GetMapping("/editExpense/{id}")
-    public String showUpdateExpensePage(@PathVariable long id, Model model) {
+    public String showUpdateExpensePage(@PathVariable String id, Model model) {  // Change id type to String
         Expense expense = expenseService.getExpenseById(id);
         model.addAttribute("expense", expense);
         return "update-expense";
     }
 
     @PostMapping("/updateExpense/{id}")
-    public String updateExpense(@PathVariable long id, @ModelAttribute Expense expense, Model model) {
+    public String updateExpense(@PathVariable String id, @ModelAttribute Expense expense, Model model) {  // Change id type to String
         Expense existingExpense = expenseService.getExpenseById(id);
         existingExpense.setDescription(expense.getDescription());
         existingExpense.setAmount(expense.getAmount());
@@ -58,7 +58,7 @@ public class ExpenseController {
     }
 
     @GetMapping("/deleteExpense/{id}")
-    public String deleteExpense(@PathVariable long id) {
+    public String deleteExpense(@PathVariable String id) {  // Change id type to String
         expenseService.deleteExpenseById(id);
         return "redirect:/";
     }

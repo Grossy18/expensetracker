@@ -21,11 +21,11 @@ public class ExpenseService {
         expenseRepository.save(expense);
     }
 
-    public Expense getExpenseById(Long id) {
+    public Expense getExpenseById(String id) { // Change id type from Long to String
         return expenseRepository.findById(id).orElse(null);
     }
 
-    public void deleteExpenseById(Long id) {
+    public void deleteExpenseById(String id) { // Change id type from Long to String
         expenseRepository.deleteById(id);
     }
 }
